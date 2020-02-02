@@ -2,13 +2,18 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 //components
-import { HomePage } from './pages';
+import { HomePage, ShopPage } from './pages';
+import { Header } from './components';
 
 const App = () => {
   return (
-    <Switch>
-      <Route exact path='/' component={HomePage} />
-    </Switch>
+    <>
+      <Header />
+      <Switch>
+        <Route exact path='/' component={HomePage} />
+        <Route exact path='/shop' component={ShopPage} />
+      </Switch>
+    </>
   );
 };
 

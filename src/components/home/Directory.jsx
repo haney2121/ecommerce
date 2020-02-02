@@ -7,10 +7,10 @@ import { MenuItem } from '../index';
 import { DirectoryStyles } from '../../styles';
 
 //utils
-import { sectionsData } from '../../utils/directory.data';
+import { SECTION_DATA } from '../../utils/directory.data';
 
 const Directory = props => {
-  const [sections, setSections] = useState(sectionsData);
+  const [sections, setSections] = useState(SECTION_DATA);
 
   return (
     <DirectoryStyles>
