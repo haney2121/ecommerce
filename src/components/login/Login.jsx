@@ -10,6 +10,9 @@ import { useForm } from '../../hooks/useForm';
 //styles
 import { LoginStyles } from '../../styles';
 
+//firebase
+import { signInWithGoogle } from '../../firebase/firebase.utils';
+
 const Login = () => {
   const [formData, setFormData] = useForm({ email: '', password: '' });
 
@@ -39,7 +42,14 @@ const Login = () => {
           value={formData.password}
           required
         />
-        <Button form='login'>SIGN IN</Button>
+        <div className='Buttons'>
+          <Button type='submit' form='login'>
+            SIGN IN
+          </Button>
+          <Button googleLogin onClick={signInWithGoogle}>
+            SIGN IN WITH GOOGLE
+          </Button>
+        </div>
       </form>
     </LoginStyles>
   );

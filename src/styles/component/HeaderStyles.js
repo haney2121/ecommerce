@@ -22,6 +22,7 @@ export const HeaderStyles = styled.header`
 
     .Option {
       padding: 10px 15px;
+      cursor: pointer;
     }
   }
 `;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 //image
@@ -7,7 +7,13 @@ import { ReactComponent as Logo } from '../../assets/crown.svg';
 //styles
 import { HeaderStyles } from '../../styles';
 
+//context
+import { AuthContext } from '../../context/authContext';
+
 const Header = () => {
+  const { user, logout } = useContext(AuthContext);
+
+  console.log(user);
   return (
     <HeaderStyles>
       <Link className='Logo-Container' to='/'>
@@ -20,9 +26,18 @@ const Header = () => {
         <Link className='Option' to='/contact'>
           CONTACT
         </Link>
-        <Link className='Option' to='/login'>
-          LOGIN
-        </Link>
+        {user ? (
+          <>
+            <p className='User'>Welcome, {user.displayName}</p>
+            <div className='Option' onClick={logout}>
+              LOGOUT
+            </div>
+          </>
+        ) : (
+          <Link className='Option' to='/login'>
+            LOGIN
+          </Link>
+        )}
       </div>
     </HeaderStyles>
   );

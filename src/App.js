@@ -5,16 +5,22 @@ import { Route, Switch } from 'react-router-dom';
 import { HomePage, ShopPage, LoginPage } from './pages';
 import { Header } from './components';
 
+//route
+import PrivateRoute from './routes/PrivateRoute';
+
+//context
+import Auth from './context/authContext';
+
 const App = () => {
   return (
-    <>
+    <Auth>
       <Header />
       <Switch>
         <Route exact path='/' component={HomePage} />
-        <Route exact path='/shop' component={ShopPage} />
+        <PrivateRoute exact path='/shop' component={ShopPage} />
         <Route exact path='/login' component={LoginPage} />
       </Switch>
-    </>
+    </Auth>
   );
 };
 

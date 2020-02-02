@@ -13,12 +13,21 @@ export const ButtonStyles = styled.button`
   text-transform: uppercase;
   font-family: 'Open Sans Condensed';
   font-weight: bolder;
-  border: none;
+  border: 1px solid black;
   cursor: pointer;
+
+  &.Google-Login {
+    background-color: #4285f4;
+    color: #fff;
+    border: 1px solid black;
+
+    &:hover {
+      background-color: #357ae8;
+    }
+  }
 
   &:hover {
     background-color: white;
     color: black;
-    border: 1px solid black;
   }
 `;

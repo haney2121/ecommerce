@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const LoginPageStyles = styled.div`
-  width: 30vw;
+  width: 380px;
   display: flex;
   flex-direction: column;
 `;
