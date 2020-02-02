@@ -14,15 +14,8 @@ const Directory = props => {
 
   return (
     <DirectoryStyles>
-      {sections.map(({ id, title, imageUrl, linkUrl, size }) => (
-        <MenuItem
-          subtitle='SHOP NOW'
-          title={title}
-          size={size}
-          key={id}
-          imageUrl={imageUrl}
-          linkUrl={linkUrl}
-        />
+      {sections.map(({ id, ...otherSectionProps }) => (
+        <MenuItem subtitle='SHOP NOW' key={id} {...otherSectionProps} />
       ))}
     </DirectoryStyles>
   );
