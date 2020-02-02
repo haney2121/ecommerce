@@ -1,3 +1,4 @@
-import HomePage from './HomePage';
+import MenuItem from './menu-item/MenuItem';
+import Directory from './directory/Directory';
 
-export { HomePage };
+export { MenuItem, Directory };

@@ -1,10 +1,7 @@
 import React from 'react';
 
 //components
-import { HomePage } from './components';
-
-//styles
-import './App.css';
+import { HomePage } from './pages';
 
 const App = () => {
   return (
