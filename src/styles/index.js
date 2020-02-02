@@ -1,6 +1,6 @@
 //page styles
 import { HomePageStyles } from './page/HomePageStyles';
-import { ShopPageStyles } from './ShopPageStyles';
+import { ShopPageStyles } from './page/ShopPageStyles';
 import { LoginPageStyles } from './page/LoginPageStyles';
 
 //nav styles
@@ -8,6 +8,7 @@ import { HeaderStyles } from './component/HeaderStyles';
 
 //form styles
 import { FormInputStyles } from './component/FormInputStyles';
+import { ButtonStyles } from './ButtonStyles';
 
 //component styles
 import { MenuItemStyles } from './component/MenuItemStyles';
@@ -30,5 +31,6 @@ export {
   CollectionItemStyles,
   LoginStyles,
   RegisterStyles,
-  FormInputStyles
+  FormInputStyles,
+  ButtonStyles
 };

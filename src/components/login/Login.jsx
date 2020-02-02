@@ -39,7 +39,7 @@ const Login = () => {
           value={formData.password}
           required
         />
-        <Button text='LOGIN' form='login' />
+        <Button form='login'>SIGN IN</Button>
       </form>
     </LoginStyles>
   );
