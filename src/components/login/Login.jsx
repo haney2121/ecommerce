@@ -1,11 +1,10 @@
 import React from 'react';
 
 //components
-import { FormInput } from '../index';
-import Button from '../Button';
+import { FormInput, Button } from '../index';
 
 //hook
-import { useForm } from '../../hooks/useForm';
+import { useForm } from '../../hooks';
 
 //styles
 import { LoginStyles } from '../../styles';

@@ -13,6 +13,17 @@ export const HeaderStyles = styled.header`
     padding: 25px;
   }
 
+  .Profile-Image {
+    width: 50px;
+    margin: 0 10px 0 0;
+    height: 50px;
+    img {
+      border-radius: 50%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
   .Options {
     width: 50%;
     height: 100%;

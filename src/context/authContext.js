@@ -1,6 +1,7 @@
-import React, { createContext, useMemo, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 //firebase
 import { auth } from '../firebase/firebase.utils';
+import { createUserProfileDocument } from '../firebase/firebase.functions';
 
 export const AuthContext = createContext();
 
@@ -8,8 +9,17 @@ const Auth = props => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    auth.onAuthStateChanged(user => {
-      setUser(user);
+    auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot(snapShot => {
+          let userInfo = { ...snapShot.data(), id: snapShot.id };
+          setUser(userInfo);
+        });
+      } else {
+        setUser(null);
+      }
     });
     return () => {
       //closes subscrition
@@ -19,7 +29,6 @@ const Auth = props => {
 
   const logout = () => {
     auth.signOut();
-    setUser(null);
   };
 
   return (

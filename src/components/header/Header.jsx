@@ -28,6 +28,11 @@ const Header = () => {
         </Link>
         {user ? (
           <>
+            {user.photoURL && (
+              <span className='Profile-Image'>
+                <img src={user.photoURL} alt={user.displayName} />
+              </span>
+            )}
             <p className='User'>Welcome, {user.displayName}</p>
             <div className='Option' onClick={logout}>
               LOGOUT

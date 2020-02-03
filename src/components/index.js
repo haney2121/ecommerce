@@ -3,6 +3,7 @@ import Header from './header/Header';
 
 //forms
 import FormInput from './forms/FormInput';
+import Button from './Button';
 
 //login components
 import Login from './login/Login';
@@ -22,5 +23,6 @@ export {
   Header,
   Login,
   Register,
-  FormInput
+  FormInput,
+  Button
 };
