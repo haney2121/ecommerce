@@ -9,18 +9,18 @@ import { Header } from './components';
 import PrivateRoute from './routes/PrivateRoute';
 
 //context
-import Auth from './context/authContext';
+// import Auth from './context/authContext';
 
 const App = () => {
   return (
-    <Auth>
+    <>
       <Header />
       <Switch>
         <Route exact path='/' component={HomePage} />
         <PrivateRoute exact path='/shop' component={ShopPage} />
         <Route exact path='/login' component={LoginPage} />
       </Switch>
-    </Auth>
+    </>
   );
 };
 

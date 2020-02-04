@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 
 //components
 import { FormInput, Button } from '../index';
@@ -6,14 +7,19 @@ import { FormInput, Button } from '../index';
 //hooks
 import { useForm, useErrors } from '../../hooks';
 
+//firebase
+import { auth } from '../../firebase/firebase.utils';
+
 //styles
 import { RegisterStyles } from '../../styles';
 
 //context
-import { AuthContext } from '../../context/authContext';
+// import { AuthContext } from '../../context/authContext';
+import { createUserProfileDocument } from '../../firebase/firebase.functions';
+import { setCurrentUser } from '../../redux/user/user.actions';
 
-const Register = props => {
-  const { user } = useContext(AuthContext);
+const Register = ({ setCurrentUser }) => {
+  // const { setUser } = useContext(AuthContext);
   const [errors, setErrors] = useErrors({
     display: false,
     message: ''
@@ -27,9 +33,26 @@ const Register = props => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    console.log(formData);
-    if (formData.password != formData.confirmPassword) {
+
+    if (formData.password !== formData.confirmPassword) {
       setErrors({ display: true, message: 'Passwords must be the same.' });
+    }
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        formData.email,
+        formData.password
+      );
+
+      await createUserProfileDocument(user, {
+        displayName: formData.displayName
+      });
+
+      setCurrentUser(user);
+    } catch (err) {
+      setErrors({
+        display: true,
+        message: 'The user was unsuccessful in creation.'
+      });
     }
   };
 
@@ -77,4 +100,8 @@ const Register = props => {
   );
 };
 
-export default Register;
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+});
+
+export default connect(null, mapDispatchToProps)(Register);

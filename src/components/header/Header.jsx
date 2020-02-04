@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 //image
 import { ReactComponent as Logo } from '../../assets/crown.svg';
@@ -7,13 +8,14 @@ import { ReactComponent as Logo } from '../../assets/crown.svg';
 //styles
 import { HeaderStyles } from '../../styles';
 
-//context
-import { AuthContext } from '../../context/authContext';
+//firebase
+import { auth } from '../../firebase/firebase.utils';
 
-const Header = () => {
-  const { user, logout } = useContext(AuthContext);
+const Header = ({ currentUser }) => {
+  const logout = () => {
+    auth.signOut();
+  };
 
-  console.log(user);
   return (
     <HeaderStyles>
       <Link className='Logo-Container' to='/'>
@@ -26,14 +28,14 @@ const Header = () => {
         <Link className='Option' to='/contact'>
           CONTACT
         </Link>
-        {user ? (
+        {currentUser ? (
           <>
-            {user.photoURL && (
+            {currentUser.photoURL && (
               <span className='Profile-Image'>
-                <img src={user.photoURL} alt={user.displayName} />
+                <img src={currentUser.photoURL} alt={currentUser.displayName} />
               </span>
             )}
-            <p className='User'>Welcome, {user.displayName}</p>
+            <p className='User'>Welcome, {currentUser.displayName}</p>
             <div className='Option' onClick={logout}>
               LOGOUT
             </div>
@@ -48,4 +50,8 @@ const Header = () => {
   );
 };
 
-export default Header;
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+});
+
+export default connect(mapStateToProps)(Header);
