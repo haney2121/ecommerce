@@ -36,7 +36,6 @@ export const CheckoutPageStyles = styled.div`
 
   button {
     margin-top: 30px;
-
     margin-left: auto;
   }
 
