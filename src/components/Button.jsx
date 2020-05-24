@@ -2,9 +2,17 @@ import React from 'react';
 
 import { ButtonStyles } from '../styles';
 
-const Button = ({ children, googleLogin, ...otherProps }) => {
+const Button = ({ children, googleLogin, inverted, ...otherProps }) => {
   return (
-    <ButtonStyles className={googleLogin && `Google-Login`} {...otherProps}>
+    <ButtonStyles
+      width={otherProps.width}
+      opacity={otherProps.opacity}
+      position={otherProps.position}
+      top={otherProps.top}
+      className={`${inverted ? 'Inverted' : ''} ${
+        googleLogin && 'Google-Login'
+      }`}
+      {...otherProps}>
       {children}
     </ButtonStyles>
   );

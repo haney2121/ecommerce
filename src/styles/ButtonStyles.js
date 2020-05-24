@@ -13,8 +13,20 @@ export const ButtonStyles = styled.button`
   text-transform: uppercase;
   font-family: 'Open Sans Condensed';
   font-weight: bolder;
-  border: 1px solid black;
+  border: none;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  width: ${({ width }) => width};
+  opacity: ${({ opacity }) => opacity};
+  position: ${({ position }) => position};
+  top: ${({ top }) => top};
+
+  &:hover {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+  }
 
   &.Google-Login {
     background-color: #4285f4;
@@ -26,8 +38,14 @@ export const ButtonStyles = styled.button`
     }
   }
 
-  &:hover {
-    background-color: white;
-    color: black;
+  &.Inverted {
+    background-color: black;
+    color: white;
+    border: none;
+    &:hover {
+      background-color: white;
+      color: black;
+      border: 1px solid black;
+    }
   }
 `;

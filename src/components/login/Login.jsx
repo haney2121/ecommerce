@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 
 //components
 import { FormInput, Button } from '../index';
@@ -10,39 +9,20 @@ import { useForm } from '../../hooks';
 //styles
 import { LoginStyles } from '../../styles';
 
-//redux
-import { setCurrentUser } from '../../redux/user/user.actions';
-
 //firebase
-import { signInWithGoogle } from '../../firebase/firebase.utils';
-import { auth } from '../../firebase/firebase.utils';
-import { createUserProfileDocument } from '../../firebase/firebase.functions';
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 
-const Login = ({ setCurrentUser }) => {
+const Login = () => {
   const [formData, setFormData] = useForm({ email: '', password: '' });
 
-  useEffect(() => {
-    auth.onAuthStateChanged(async userAuth => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-
-        userRef.onSnapshot(snapShot => {
-          let userInfo = { ...snapShot.data(), id: snapShot.id };
-          setCurrentUser(userInfo);
-        });
-      } else {
-        setCurrentUser(null);
-      }
-    });
-    return () => {
-      //closes subscrition
-      auth.onAuthStateChanged();
-    };
-  }, [setCurrentUser]);
-
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    try {
+      await auth.signInWithEmailAndPassword(formData.email, formData.password);
+      setFormData({ email: '', password: '' });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -79,8 +59,4 @@ const Login = ({ setCurrentUser }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
-});
-
-export default connect(null, mapDispatchToProps)(Login);
+export default Login;

@@ -2,10 +2,11 @@ import styled from 'styled-components';
 
 export const HeaderStyles = styled.header`
   height: 70px;
-  width: 100%;
+  width: auto;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 25px;
+  margin: 0 20px 25px;
+  position: relative;
 
   .Logo-Container {
     height: 100%;
