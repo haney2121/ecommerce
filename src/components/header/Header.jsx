@@ -38,15 +38,17 @@ const Header = ({ currentUser, cartHidden }) => {
           CONTACT
         </Link>
         {currentUser ? (
-          <div className='Option' onClick={logout}>
-            SIGN OUT
-          </div>
+          <>
+            <div className='Option' onClick={logout}>
+              SIGN OUT
+            </div>
+            <CartIcon />
+          </>
         ) : (
           <Link className='Option' to='/login'>
             LOGIN
           </Link>
         )}
-        <CartIcon />
       </div>
       {!cartHidden && <CartDropdown />}
     </HeaderStyles>
