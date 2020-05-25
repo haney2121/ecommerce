@@ -6,7 +6,11 @@ import logger from 'redux-logger';
 import rootReducer from './root.reducer';
 
 //middleware
-const middlewares = [logger];
+const middlewares = [];
+
+if (process.env.NODE_ENV === 'development') {
+  middlewares.push(logger);
+}
 
 //for logger and inspector tools for redux dev tools
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
