@@ -4,7 +4,7 @@ import React from 'react';
 import { CartItemStyles } from '../../styles';
 
 const CartItem = ({ item }) => {
-  const { id, imageUrl, price, name, quantity } = item;
+  const { imageUrl, price, name, quantity } = item;
 
   return (
     <CartItemStyles>

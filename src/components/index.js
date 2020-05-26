@@ -2,7 +2,7 @@
 import Header from './header/Header';
 
 //forms
-import FormInput from './forms/FormInput';
+import FormInput from '../redux/forms/FormInput';
 import Button from './Button';
 
 //login components
@@ -29,6 +29,9 @@ import CheckoutItem from './checkout/CheckoutItem';
 //stripe components
 import StripeButton from './stripe/StripeButton';
 
+//withspinner component
+import WithSpinner from './withSpinner/WithSpinner';
+
 export {
   MenuItem,
   Directory,
@@ -45,4 +48,5 @@ export {
   FormInput,
   Button,
   StripeButton,
+  WithSpinner,
 };

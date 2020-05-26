@@ -12,12 +12,13 @@ import { HomePage, ShopPage, LoginPage, CheckoutPage } from './pages';
 //route
 import PrivateRoute from './routes/PrivateRoute';
 
-//actions
+//redux actions and selectors
 import { setCurrentUser } from './redux/user/user.actions';
 
 //firebase
 import { auth } from './firebase/firebase.utils';
 import { createUserProfileDocument } from './firebase/firebase.functions';
+
 import { selectCurrentUser } from './redux/user/user.selectors';
 
 const App = ({ setCurrentUser, currentUser }) => {

@@ -18,11 +18,44 @@ export const createUserProfileDocument = async (userAuth, additionData) => {
         email,
         createdAt,
         photoURL,
-        ...additionData
+        ...additionData,
       });
     } catch (err) {
       console.log('error creating user', err.message);
     }
   }
   return userRef;
+};
+
+export const convertCollectionsSnapshotToMap = async (collections) => {
+  const transformedCollection = collections.docs.map((doc) => {
+    const { title, items } = doc.data();
+    return {
+      title,
+      items,
+      routeName: encodeURI(title.toLowerCase()),
+      id: doc.id,
+    };
+  });
+
+  return transformedCollection.reduce((acc, collection) => {
+    acc[collection.title.toLowerCase()] = collection;
+    return acc;
+  }, {});
+};
+
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const collectionRef = firestore.collection(collectionKey);
+
+  const batch = firestore.batch();
+
+  objectsToAdd.forEach((obj) => {
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, obj);
+  });
+
+  return await batch.commit();
 };

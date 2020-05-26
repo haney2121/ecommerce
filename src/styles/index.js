@@ -27,6 +27,8 @@ import {
 
 import { CheckoutItemStyles } from './component/CheckoutItemStyles';
 
+import { WithSpinnerStyles } from './component/WithSpinner';
+
 import { LoginStyles } from './component/LoginStyles';
 import { RegisterStyles } from './component/RegisterStyles';
 
@@ -49,4 +51,5 @@ export {
   CartDropdownStyles,
   CartItemStyles,
   CheckoutItemStyles,
+  WithSpinnerStyles,
 };

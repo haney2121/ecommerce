@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../redux/user/user.selectors';
+import { WithSpinnerStyles } from '../styles';
 
 const PrivateRoute = ({ component: Component, currentUser, ...rest }) => {
   if (!rest.loading) {
@@ -15,13 +16,7 @@ const PrivateRoute = ({ component: Component, currentUser, ...rest }) => {
       />
     );
   }
-  return (
-    <div className='loading-container'>
-      <div className='spinner-grow'>
-        <span className='sr-only'>Loading...</span>
-      </div>
-    </div>
-  );
+  return <WithSpinnerStyles />;
 };
 
 const mapStateToProps = createStructuredSelector({
